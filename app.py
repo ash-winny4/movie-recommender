@@ -3,7 +3,16 @@ import pickle
 import pandas as pd
 
 movies = pickle.load(open('movies.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+@st.cache_resource
+def compute_similarity(movies):
+    cv = CountVectorizer(max_features=5000, stop_words='english')
+    vectors = cv.fit_transform(movies['tags']).toarray()
+    return cosine_similarity(vectors)
+
+similarity = compute_similarity(movies)
 
 col1, col2, col3 = st.columns([1,1.2,1])
 
