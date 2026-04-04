@@ -44,7 +44,7 @@ When the User selects a movie,
 
 --------------------------------------------------------------------
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1) Clone the repository:
 
